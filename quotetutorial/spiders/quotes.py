@@ -8,9 +8,13 @@ class QuotesSpider(scrapy.Spider):
     allowed_domains = ['quotes.toscrape.com']
     start_urls = ['http://quotes.toscrape.com/']
 
+    # def make_requests_from_url(self, url):
+    #     return scrapy.Request(url=url, meta={'download_timeout': 10}, callback=self.parse)
+
     def parse(self, response):
         # pass
         # print(response.text)
+        print('状态码为：', response.status)
         quotes = response.css('.quote')
         for quote in quotes:
             item = QuoteItem()
